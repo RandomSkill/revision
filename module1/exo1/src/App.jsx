@@ -1,4 +1,4 @@
-
+import  './index.css';
 import Header from './Components/Header/header'
 import Content from './Components/Content/Content'
 import Footer from './Components/Footer/Footer'

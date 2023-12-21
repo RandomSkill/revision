@@ -1,6 +1,7 @@
+import "./Content.css"
 const Content =(props)=>{
     return(
-        <p>
+        <p className="content">
             {props.title} {props.exo}
         </p>
     )

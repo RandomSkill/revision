@@ -1,6 +1,7 @@
+import "./Footer.css"
 const Footer = (props)=>{
     return(
-        <p>
+        <p className="footer">
             Number of exercises {props.total}
         </p>
     )
