@@ -1,7 +1,7 @@
 const FeedBackButton =(props)=>{
 function handleClick(){
-    const x = props.cpt+1;
-    props.funct(x);
+    
+    props.funct();
 }
 return (
     <button onClick={handleClick}>{props.text} </button>
