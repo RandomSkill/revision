@@ -1,9 +1,15 @@
-const Loading =(props) => {
-  setTimeout(props.funct(false),3000);
+
+const Loading =() => {
+ 
+ 
+
   
+ 
     return(
         <>The App Is Loading</>
     )
+    
+  
 }
 
 export default Loading 

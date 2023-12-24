@@ -2,6 +2,7 @@ import { useState } from 'react'
 import FeedBackButton from 'components/feedBackForm/feedBackButton'
 import Stats from 'components/stats/Stats'
 import Loading from 'components/loading/Loading'
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
@@ -9,6 +10,7 @@ const App = () => {
   const [bad, setBad] = useState(0)
   const [total,setTotal] = useState(0)
   const [loading,setLoading]= useState(true)
+ 
 
 const buttonClicked=(funct,i)=>{
   const counterUpdate =() =>{
@@ -20,12 +22,15 @@ const buttonClicked=(funct,i)=>{
   
 }
 
-if(loading)return (
-  <Loading funct = {setLoading}></Loading>
-)
+setTimeout(()=>setLoading(false),3000)
+
+
+if(loading)return(<div> <Loading setLoading={setLoading}></Loading></div>)
+
 
   return (
     <div className="feedbackform">
+    
         <h2> Give feedback </h2>
         <FeedBackButton text="good" funct={buttonClicked(setGood,good)} />
         <FeedBackButton text="neutral"  funct={buttonClicked(setNeutral,neutral)}/>
