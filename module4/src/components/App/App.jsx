@@ -1,25 +1,30 @@
 import { useState } from 'react'
+import axios from 'axios'
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '040-123456', id: 1 },
-    { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
-    { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
-    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
-  ])
-  const [filter, setFilter] = useState('')
+ 
+
+
+ 
+  const [persons, setPersons] = useState()
+
   const [newName, setNewName] = useState('')
   const [newTel, setNewTel] = useState('')
  
+  axios
+  .get('http://localhost:3001/persons')
+  .then(response => {
+     setPersons( response.data)
+    
+  })
+
   const handleNameInput=(e)=>{
    setNewName( e.target.value)
   }
   const handleTelInput=(e)=>{
     setNewTel( e.target.value)
    }
-   const handlefilterInput=(e)=>{
-    setFilter( e.target.value)
-   }
+
   const handleSubmit=(e)=>{
     e.preventDefault();
     if(verifName(newName)){
@@ -43,7 +48,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>filter shown with<input onChange={handlefilterInput} ></input> </div>
+     
       <form>
         <div>
           name: <input onChange={handleNameInput} id='inputName'/>
