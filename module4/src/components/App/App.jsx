@@ -1,22 +1,18 @@
-import { useState } from 'react'
-import axios from 'axios'
+import { useState,useEffect } from 'react'
+import personsService from '../../services/Persons/Persons'
 
 const App = () => {
  
-
-
- 
-  const [persons, setPersons] = useState()
+  const [persons, setPersons] = useState([])
 
   const [newName, setNewName] = useState('')
   const [newTel, setNewTel] = useState('')
  
-  axios
-  .get('http://localhost:3001/persons')
-  .then(response => {
-     setPersons( response.data)
-    
-  })
+
+
+  useEffect(() => {
+    personsService.getAll().then(init=>setPersons(init))},[])
+
 
   const handleNameInput=(e)=>{
    setNewName( e.target.value)
@@ -33,10 +29,12 @@ const App = () => {
         number:newTel,
         id:persons.length+1
     }
-    setPersons(persons.concat(obt));
+    personsService.create(obt).then(nPerson=>persons.concat(nPerson))
+   personsService.getAll().then(init=>setPersons(init))
     setNewName('');
     setNewTel('');
     document.querySelector("input").value="";
+
   }
   else {alert(`${newName} is already in the phonebook`);} 
   }
@@ -66,5 +64,6 @@ const App = () => {
     </div>
   )
 }
+
 
 export default App
