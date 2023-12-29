@@ -1,9 +1,11 @@
-import {OpinionContext as OpinionContextWarpper} from "src/contexts/opinionContext"
+import {ProviderWrapper as OpinionContextWarpper} from "contexts/OpinionContext"
+import App from "./App"
 const AppLoader = ()=>{
-    return
-    <OpinionContextWarpper>
-    <App/>
-    </OpinionContextWarpper>
+    return(
+         <OpinionContextWarpper>
+        <App/>
+        </OpinionContextWarpper>)
+   
 }
 
 

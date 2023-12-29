@@ -1,18 +1,25 @@
 import { useContext, useState } from "react"
-import OpinionContext from "src/contexts/opinionContext";
+import  {Context as OpinionContext} from "contexts/OpinionContext"
 
 const OpinionAdd = ()=>{
-    const {opinionInput,setOpinionInput}= useState('');
-    const {addOpinion} = useContext(OpinionContext)
+    const [opinionInput,setOpinionInput]= useState("");
+    const {addOpinion} = useContext(OpinionContext);
+   
     const handleInput =(e)=>{
-        const ninput = 
-        setOpinionInput(opinionInput)
+       
+        setOpinionInput(e.target.value)
+    }
+
+    const handleSubmit =(e)=>{
+        e.preventDefault();
+        addOpinion(opinionInput);
+        setOpinionInput("");
     }
 
     return (
         <div>
-            <form onSubmit={addOpinion(opinionInput)}>
-                <input onChange={handleInput}>{opinionInput}</input>
+            <form onSubmit={handleSubmit}>
+                <input onChange={handleInput} value={opinionInput}></input>
                 <button type="submit"> add Opinion</button>
             </form>
         </div>
